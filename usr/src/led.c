@@ -261,7 +261,7 @@ void leds_init(void)
 //#else
 void leds_process_init(Led_Work_Status_t status)
 {
-	app_trace_log("%s led status %d\n",__FUNCTION__,status);
+	LED_LOG("%s led status %d\n",__FUNCTION__,status);
 	if (status < cur_led_status || cur_led_status == LED_WORK_POWER_CHARGE_COMPLETE)
     {
         cur_led_status = status;

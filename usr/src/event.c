@@ -98,7 +98,7 @@ void sleep_manage(float tilt)
 				(fabs(cur_Tilt - tilt) > 15.00) &&
 			    (alarm_cancel_count ++ > 3))
 			{//角度变化超过15度，解除报警
-				app_trace_log("alarm_case tilt %f, last %f\n",cur_Tilt,tilt);
+				EVENT_LOG("alarm_case tilt %f, last %f\n",cur_Tilt,tilt);
 				cur_Tilt = tilt;
 				alarm_cancel_count=0;
 				g_status_alarm_status = false;
@@ -116,7 +116,7 @@ void sleep_manage(float tilt)
 		    {
 			    g_status_alarm_status = false;
 				alarm_cancel_count = 0;
-				app_trace_log("alarm_case sleep_post\n");
+				EVENT_LOG("alarm_case sleep_post\n");
 				alarm_case();
 		    }
 			last_sleep_post = cur_sleep_post;
@@ -124,7 +124,7 @@ void sleep_manage(float tilt)
 		}
 		else
 		{
-			app_trace_log("sleep_post %d time %d\n",cur_sleep_post,TimeSeconds - cur_timeseconds);
+			EVENT_LOG("sleep_post %d time %d\n",cur_sleep_post,TimeSeconds - cur_timeseconds);
 		}
 	}
 }

@@ -25,15 +25,15 @@ void key_req_timeout_handler(void * p_context)
     if (nrf_gpio_pin_read(BUTTON_1) == 0)
     {
         key_count ++;
-		app_trace_log("key_count %d\n",key_count);
+		BUTTON_LOG("key_count %d\n",key_count);
 		if (key_count >= 30)
         {//进入dfu模式
-			app_trace_log("NVIC_SystemReset %s\n",__FUNCTION__);
+			BUTTON_LOG("NVIC_SystemReset %s\n",__FUNCTION__);
             NVIC_SystemReset();
         }
         else if (key_count >= 15)
         {//恢复出厂设置
-			app_trace_log("set EVENT_KEY_RESET\n");
+			BUTTON_LOG("set EVENT_KEY_RESET\n");
 			g_event_status |= EVENT_KEY_RESET;
         }
         else if (key_count >= 5)

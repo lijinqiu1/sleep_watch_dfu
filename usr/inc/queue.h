@@ -1,6 +1,13 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+#ifdef QUEUE_DEBUG_LOG
+#deifne QUEUE_LOG 			app_trace_log
+#deifne QUEUE_DUMP 			app_trace_dump
+#else
+#define QUEUE_LOG(...)
+#define QUEUE_DUMP(...)
+#endif
 
 //队列结构体
 typedef struct {

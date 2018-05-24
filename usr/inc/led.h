@@ -1,6 +1,11 @@
 #ifndef __LED_H__
 #define __LED_H__
 
+#ifdef LEG_DEBUG_LOG
+#deifne LED_LOG 			app_trace_log
+#else
+#define LED_LOG(...)
+#endif
 
 #define LED_RED                              7                                           /**< LED to indicate advertising state. */
 #define LED_BLUE                             6                                           /**< LED to indicate connected state. */

@@ -4,7 +4,6 @@
 #include "queue.h"
 #include "app_trace.h"
 #include <math.h>
-
 static float g_cur_Tilt;                                                        //当前倾角变化值
 
 //*****************倾角计算**************************
@@ -150,7 +149,7 @@ static float calculateTilt_run_B(float ax, float ay, float az)
 		}
 	}
 	Tiltangle = calculateTilt_B(ax,ay,az);
-	app_trace_log("First_Tiltangle %f,Tiltangle %f\n",First_Tiltangle,Tiltangle);
+	TITL_LOG("First_Tiltangle %f,Tiltangle %f\n",First_Tiltangle,Tiltangle);
     Tiltangle_return = First_Tiltangle - Tiltangle;
 	if (Tiltangle_return < -180.0)
 	{
@@ -185,11 +184,11 @@ float calculateTilt(void)
 		az = Axes_Raw_Data.AXIS_Z/16384.0;
 		g_cur_Tilt = calculateTilt_B(ax,ay,az);
 				ConvertUTCTime(&time,TimeSeconds);
-//				app_trace_log("X=%6f Y=%6f Z=%6f \r\n",
-//					ax,ay,az);
-//				app_trace_log("Tilt = %6f \r\n", g_cur_Tilt);
-//				app_trace_log("y:%d m:%d d:%d h:%d m:%d s:%d\r\n",\
-//					          time.year,time.month,time.day,time.hour,time.minutes,time.seconds);
+		TITL_LOG("X=%6f Y=%6f Z=%6f \r\n",
+			ax,ay,az);
+		TITL_LOG("Tilt = %6f \r\n", g_cur_Tilt);
+		TITL_LOG("y:%d m:%d d:%d h:%d m:%d s:%d\r\n",\
+					  time.year,time.month,time.day,time.hour,time.minutes,time.seconds);
 		tilt = g_cur_Tilt;
 	}
 	return tilt;
@@ -208,6 +207,6 @@ void save_Tilt(float Tilt)
 	item.second = time.seconds;
 	item.angle = (uint16_t)(g_cur_Tilt*100);
 	queue_push(&item);
-	app_trace_log("data push y:%d m:%d d:%d h:%d m:%d s:%d\r\n",\
+	TITL_LOG("data push y:%d m:%d d:%d h:%d m:%d s:%d\r\n",\
 				  time.year,time.month,time.day,time.hour,time.minutes,time.seconds);
 }

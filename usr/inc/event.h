@@ -4,6 +4,11 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifdef EVENT_DEBUG_LOG
+#deifne EVENT_LOG 			app_trace_log
+#else
+#define EVENT_LOG(...)
+#endif
 
 #define LIS3DH_SMAPLE_RATE				1											/**< 三轴加速度采样频率 单位:秒 >**/
 

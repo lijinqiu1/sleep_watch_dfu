@@ -47,7 +47,7 @@ void pwm_cycle_process_handler(void * p_context)
 	}
 	if (timeout++)
 	{
-		app_trace_log("set value timeout!\n");
+		PWM_LOG("set value timeout!\n");
 	}
 }	
 void pwm_ready_callback(uint32_t pwm_id)    // PWM callback function
@@ -59,7 +59,7 @@ void pwm_ready_callback(uint32_t pwm_id)    // PWM callback function
 
 void pwm_led_start(uint32_t led)
 {
-	app_trace_log("entery %s\n",__FUNCTION__);
+	PWM_LOG("entery %s\n",__FUNCTION__);
     if (pwm_led_status != 0)
     {
         return ;
@@ -79,13 +79,13 @@ void pwm_led_start(uint32_t led)
 	
 	err_code = app_timer_start(m_pwm_timer_id,APP_TIMER_TICKS(25,APP_TIMER_PRESCALER),NULL);
     APP_ERROR_CHECK(err_code);
-	app_trace_log("leave %s\n",__FUNCTION__);
+	PWM_LOG("leave %s\n",__FUNCTION__);
 }
 
 void pwm_led_stop(void)
 {
 	ret_code_t err_code;
-	app_trace_log("entery %s\n",__FUNCTION__);
+	PWM_LOG("entery %s\n",__FUNCTION__);
     if (pwm_led_status == 0)
     {
         return;
@@ -99,7 +99,7 @@ void pwm_led_stop(void)
 	nrf_drv_gpiote_out_task_disable(LED_BLUE); 
 	err_code = app_pwm_uninit(&PWM1);
 	APP_ERROR_CHECK(err_code);
-	app_trace_log("unint %s\n",__FUNCTION__);
+	PWM_LOG("unint %s\n",__FUNCTION__);
 	nrf_gpio_cfg_output(LED_BLUE);
 	nrf_gpio_pin_set(LED_BLUE);
 }
@@ -107,7 +107,7 @@ void pwm_led_stop(void)
 void pwm_moto_init(void)
 {
 	ret_code_t err_code;
-	app_trace_log("entery %s\n",__FUNCTION__);
+	PWM_LOG("entery %s\n",__FUNCTION__);
 	/* 1-channel PWM, 200 Hz, output on DK LED pins. */
 	app_pwm_config_t pwm2_cfg = APP_PWM_DEFAULT_CONFIG_1CH(10000L, PWM_MOTO_PIN);
 	/* Switch the polarity of the second channel. */
@@ -116,7 +116,7 @@ void pwm_moto_init(void)
 	err_code = app_pwm_init(&PWM2,&pwm2_cfg,pwm_ready_callback);
 	APP_ERROR_CHECK(err_code);
 	app_pwm_enable(&PWM2);
-	app_trace_log("leave %s\n",__FUNCTION__);
+	PWM_LOG("leave %s\n",__FUNCTION__);
 }
 
 static void pwm_moto_deinit(void)
@@ -138,7 +138,7 @@ void alarm_init(void)
 	moto_time = 0;
 	moto_count = 0;
 	moto_strong_index = 0;
-    app_trace_log("%s!\n",__FUNCTION__);
+    PWM_LOG("%s!\n",__FUNCTION__);
 }
 
 void alarm_process(void)
@@ -152,7 +152,8 @@ void alarm_process(void)
 			if (system_params.moto_strong == MOTO_LEVEL_AUTO)
 			{
 				while (app_pwm_channel_duty_set(&PWM2, 0, moto_strong[moto_strong_index]) == NRF_ERROR_BUSY);
-                app_trace_log("%s index %d time %d count %d!\n",__FUNCTION__,moto_strong_index,moto_time,moto_count);
+//				while (app_pwm_channel_duty_set(&PWM2, 0, MOTO_STRONG_FULL) == NRF_ERROR_BUSY);
+                PWM_LOG("%s index %d time %d count %d!\n",__FUNCTION__,moto_strong_index,moto_time,moto_count);
 				if (moto_strong_index < 3)
 				{
 					moto_strong_index++;
@@ -162,11 +163,11 @@ void alarm_process(void)
 			break;
 		case 3:
 			pwm_moto_deinit();
-            app_trace_log("%s index %d time %d count %d!\n",__FUNCTION__,moto_strong_index,moto_time,moto_count);
+            PWM_LOG("%s index %d time %d count %d!\n",__FUNCTION__,moto_strong_index,moto_time,moto_count);
 			moto_time++;
 			break;
 		case 8:
-            app_trace_log("%s index %d time %d count %d!\n",__FUNCTION__,moto_strong_index,moto_time,moto_count);
+            PWM_LOG("%s index %d time %d count %d!\n",__FUNCTION__,moto_strong_index,moto_time,moto_count);
 			moto_time = 0;
 			moto_count++;
 			break;
@@ -180,5 +181,5 @@ void alarm_process(void)
 void alarm_case(void)
 {
 	pwm_moto_deinit();
-    app_trace_log("%s!\n",__FUNCTION__);
+    PWM_LOG("%s!\n",__FUNCTION__);
 }

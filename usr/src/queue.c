@@ -92,12 +92,12 @@ void queue_init(void)
     {
         system_params.device_bonded = 0;
     }
-	app_trace_log("phone :");
-	app_trace_dump(system_params.mac_add,11);
-	app_trace_log("time :");
-	app_trace_dump(system_params.time,6);
-	app_trace_log("bond %d\n",system_params.device_bonded);
-	app_trace_log("queue_entries %d\n",queue_entries.entries);
+	QUEUE_LOG("phone :");
+	QUEUE_DUMP(system_params.mac_add,11);
+	QUEUE_LOG("time :");
+	QUEUE_DUMP(system_params.time,6);
+	QUEUE_LOG("bond %d\n",system_params.device_bonded);
+	QUEUE_LOG("queue_entries %d\n",queue_entries.entries);
 }
 
 void queue_push(queue_items_t *item)

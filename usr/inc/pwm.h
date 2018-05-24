@@ -2,6 +2,13 @@
 #define __PWM_H__
 
 #include "app_timer.h"
+
+#ifdef PWM_DEBUG_LOG
+#deifne PWM_LOG 			app_trace_log
+#else
+#define PWM_LOG(...)
+#endif
+
 //pwm
 #define MAX_SAMPLE_LEVELS (256UL)  /**< Maximum number of sample levels. */
 #define TIMER_PRESCALERS   6U       /**< Prescaler setting for timer. */

@@ -1,6 +1,14 @@
 #ifndef __TILT_H__
 #define __TILT_H__
 
+
+#define TITL_DEBUG_LOG
+#ifdef TITL_DEBUG_LOG
+#define TITL_LOG 			app_trace_log
+#else
+#define TITL_LOG(...)
+#endif
+
 #define ALARM_SLEEP_POSE_ONE_BEGIN           0
 #define ALARM_SLEEP_POSE_ONE_END            60
 #define ALARM_SLEEP_POSE_TWO_BEGIN          60
