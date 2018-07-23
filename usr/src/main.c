@@ -878,9 +878,9 @@ int main(void)
 //	uint8_t data;
 //	LIS3DH_GetWHO_AM_I(&data);
 //	app_trace_log("who am i %x\n",data);
-	
+//	pwm_moto_test();
+//	queue_test();
     // Enter main loop.
-	
     for (;;)
     {
 		if (g_event_status & EVENT_LIS3DH_VALUE)
@@ -1116,7 +1116,8 @@ int main(void)
 					data_array_temp[9] = (uint8_t)(item.angle & 0x00ff);
 					data_array_temp[10] = (uint8_t)((item.angle >> 8) & 0x00ff);
 					data_array_temp[11] = 0x80;
-					app_trace_dump(data_array_temp,12);
+					//app_trace_dump(data_array_temp,12);
+					app_trace_log("%d-%d-%d:%d-%d-%d\n",item.year,item.mon,item.day,item.hour,item.min,item.second);
 					err_code = ble_nus_string_send(&m_nus, data_array_temp, 12);
 			        while (err_code != NRF_SUCCESS)
 			        {

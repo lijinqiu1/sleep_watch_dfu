@@ -184,11 +184,11 @@ float calculateTilt(void)
 		az = Axes_Raw_Data.AXIS_Z/16384.0;
 		g_cur_Tilt = calculateTilt_B(ax,ay,az);
 				ConvertUTCTime(&time,TimeSeconds);
-		TITL_LOG("X=%6f Y=%6f Z=%6f \r\n",
-			ax,ay,az);
-		TITL_LOG("Tilt = %6f \r\n", g_cur_Tilt);
-		TITL_LOG("y:%d m:%d d:%d h:%d m:%d s:%d\r\n",\
-					  time.year,time.month,time.day,time.hour,time.minutes,time.seconds);
+//		TITL_LOG("X=%6f Y=%6f Z=%6f \r\n",
+//			ax,ay,az);
+//		TITL_LOG("Tilt = %6f \r\n", g_cur_Tilt);
+//		TITL_LOG("y:%d m:%d d:%d h:%d m:%d s:%d\r\n",\
+//					  time.year,time.month,time.day,time.hour,time.minutes,time.seconds);
 		tilt = g_cur_Tilt;
 	}
 	return tilt;

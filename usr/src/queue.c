@@ -7,6 +7,7 @@
 #include "pwm.h"
 #include "queue.h"
 #include "app_trace.h"
+#include "nrf_delay.h"
 
 //变量声明
 //系统参数信息
@@ -350,3 +351,39 @@ uint8_t queue_message_pop(uint8_t *message)
     return 0;
 }
 
+void queue_test(void)
+{
+	uint16_t i = 0;
+	queue_items_t item;
+	for (i = 0; i < QUEUE_ENTRIES_NUM;i ++)
+	{
+		item.year = 1;
+		item.mon = 1;
+		item.day = 1;
+		item.hour = 1;
+		item.min = 1;
+		item.second = 1;
+		item.angle = i;
+		queue_push(&item);
+		QUEUE_LOG("data push y:%d m:%d d:%d h:%d m:%d s:%d t:%d\r\n",\
+					  item.year,item.mon,item.day,item.hour,item.min,item.second,item.angle);
+		nrf_delay_ms(1000);
+		
+	}
+	
+	nrf_delay_ms(1000);
+	queue_sync();
+	
+	while(queue_pop(&item) != 1)
+	{
+		QUEUE_LOG("data pop y:%d m:%d d:%d h:%d m:%d s:%d t:%d\r\n",\
+					  item.year,item.mon,item.day,item.hour,item.min,item.second,item.angle);
+		nrf_delay_ms(1000);
+	}
+	
+	QUEUE_LOG("test complete!\r\n");
+	while(1)
+	{
+//		power_manage();
+	}
+}

@@ -1,6 +1,12 @@
 #ifndef __BATTERY_H__
 #define __BATTERY_H__
 
+#ifdef BATTERY_DEBUG_LOG
+#deifne BATTERY_LOG 			app_trace_log
+#else
+#define BATTERY_LOG(...)
+#endif
+
 #define BQ24040_PG_PIN      11
 #define BQ24040_CHG_PIN     12
 

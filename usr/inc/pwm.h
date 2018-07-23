@@ -2,9 +2,11 @@
 #define __PWM_H__
 
 #include "app_timer.h"
+#include "app_trace.h"
+#define PWM_DEBUG_LOG
 
 #ifdef PWM_DEBUG_LOG
-#deifne PWM_LOG 			app_trace_log
+#define PWM_LOG 			app_trace_log
 #else
 #define PWM_LOG(...)
 #endif
@@ -47,5 +49,5 @@ void pwm_moto_init(void);
 void pwm_led_start(uint32_t led);
 void pwm_led_stop(void);
 void pwm_cycle_process_handler(void * p_context);
-
+void pwm_moto_test(void);
 #endif

@@ -334,7 +334,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls>--c99</MiscControls>
-              <Define>BLE_DFU_APP_SUPPORT BLE_STACK_SUPPORT_REQD S110 BOARD_PCA10028 SOFTDEVICE_PRESENT NRF51 SWI_DISABLE0 SPI_MASTER_1_ENABLE ENABLE_DEBUG_LOG_SUPPORT DEBUG BSP_SIMPLE</Define>
+              <Define>BLE_DFU_APP_SUPPORT BLE_STACK_SUPPORT_REQD S110 BOARD_PCA10028 SOFTDEVICE_PRESENT NRF51 SWI_DISABLE0 SPI_MASTER_1_ENABLE DEBUG BSP_SIMPLE ENABLE_DEBUG_LOG_SUPPORT</Define>
               <Undefine></Undefine>
               <IncludePath>..\config;..\components\softdevice\s110\headers;..\bsp;..\components\ble\common;..\components\ble\ble_advertising;..\components\ble\ble_services\ble_dfu;..\components\ble\ble_services\ble_nus;..\components\ble\device_manager;..\components\libraries\util;..\components\libraries\timer;..\components\libraries\trace;..\components\libraries\bootloader_dfu;..\components\libraries\uart;..\components\drivers_nrf\common;..\components\drivers_nrf\hal;..\components\drivers_nrf\pstorage;..\components\drivers_nrf\uart;..\components\drivers_nrf\gpiote;..\components\softdevice\common\softdevice_handler;..\components\toolchain;..\components\device;..\components\drivers_nrf\spi_master;..\usr\inc;..\components\libraries\gpiote;..\components\libraries\pwm;..\components\drivers_nrf\ppi;..\components\drivers_nrf\timer</IncludePath>
             </VariousControls>

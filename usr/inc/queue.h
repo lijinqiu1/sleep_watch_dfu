@@ -1,9 +1,11 @@
 #ifndef __QUEUE_H__
 #define __QUEUE_H__
 
+#define QUEUE_DEBUG_LOG
+
 #ifdef QUEUE_DEBUG_LOG
-#deifne QUEUE_LOG 			app_trace_log
-#deifne QUEUE_DUMP 			app_trace_dump
+#define QUEUE_LOG 			app_trace_log
+#define QUEUE_DUMP 			app_trace_dump
 #else
 #define QUEUE_LOG(...)
 #define QUEUE_DUMP(...)
@@ -86,5 +88,5 @@ uint8_t queue_is_full(void);
 void queue_message_init(void);
 uint8_t queue_message_pop(uint8_t *message);
 void queue_message_push(uint8_t * message);
-
+void queue_test(void);
 #endif

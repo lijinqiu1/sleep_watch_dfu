@@ -104,6 +104,12 @@ void pwm_led_stop(void)
 	nrf_gpio_pin_set(LED_BLUE);
 }
 
+void pwm_moto_test(void)
+{
+	pwm_moto_init();
+	while (app_pwm_channel_duty_set(&PWM2, 0, 40) == NRF_ERROR_BUSY);
+}
+
 void pwm_moto_init(void)
 {
 	ret_code_t err_code;
