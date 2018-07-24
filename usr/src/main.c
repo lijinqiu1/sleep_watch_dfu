@@ -879,7 +879,7 @@ int main(void)
 //	LIS3DH_GetWHO_AM_I(&data);
 //	app_trace_log("who am i %x\n",data);
 //	pwm_moto_test();
-//	queue_test();
+	queue_test();
     // Enter main loop.
     for (;;)
     {

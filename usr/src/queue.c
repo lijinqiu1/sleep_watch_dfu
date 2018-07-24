@@ -355,7 +355,7 @@ void queue_test(void)
 {
 	uint16_t i = 0;
 	queue_items_t item;
-	for (i = 0; i < QUEUE_ENTRIES_NUM;i ++)
+	for (i = 0; i < QUEUE_ENTRIES_NUM + 10;i ++)
 	{
 		item.year = 1;
 		item.mon = 1;
@@ -381,7 +381,7 @@ void queue_test(void)
 		nrf_delay_ms(1000);
 	}
 	
-	QUEUE_LOG("test complete!\r\n");
+	QUEUE_LOG("test complete %d!\r\n",QUEUE_ENTRIES_NUM + 10);
 	while(1)
 	{
 //		power_manage();
